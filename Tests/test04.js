@@ -26,5 +26,4 @@ const words = [
   'seaside',
   'sandals',
 ].reverse()
-let result = crosswordSolver(puzzle, words);
-console.log(result);
+crosswordSolver(puzzle, words);

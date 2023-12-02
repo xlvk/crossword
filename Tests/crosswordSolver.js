@@ -8,15 +8,13 @@ let dimensionRow = 0
 let dimensionCol = 0
 
 export const crosswordSolver = (inputStr,inputWords) => { // Basically the main
-    // Assign inputs to global variables
-    wordsIn = inputWords
-    if (typeof inputStr === 'string') {
-        inputArr = inputStr.split('\n')
-    } else {
-        // console.log("Error: invalid characer detected.")
+    if (typeof inputStr !== 'string' || !Array.isArray(inputWords)) { // Verify input types
         console.log("Error")
         return
     }
+    // Assign inputs to global variables
+    wordsIn = inputWords
+    inputArr = inputStr.split('\n')
     dimensionRow = inputArr.length
     dimensionCol = inputArr[0].length
     wordCount = inputWords.length

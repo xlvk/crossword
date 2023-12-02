@@ -9,15 +9,13 @@ let dimensionRow = 0
 let dimensionCol = 0
 
 const crosswordSolver = (inputStr,inputWords) => { // Basically the main
-    // Assign inputs to global variables
-    wordsIn = inputWords
-    if (typeof inputStr === 'string') {
-        inputArr = inputStr.split('\n')
-    } else {
-        // console.log("Error: invalid characer detected.")
+    if (typeof inputStr !== 'string' || !Array.isArray(inputWords)) { // Verify input types
         console.log("Error")
         return
     }
+    // Assign inputs to global variables
+    wordsIn = inputWords
+    inputArr = inputStr.split('\n')
     dimensionRow = inputArr.length
     dimensionCol = inputArr[0].length
     wordCount = inputWords.length
@@ -147,28 +145,28 @@ const removeHorizontal = (wordIDX,row,col) => {
     }
 }
 
-// const puzzle = `..1.1..1...
-// 10000..1000
-// ..0.0..0...
-// ..1000000..
-// ..0.0..0...
-// 1000..10000
-// ..0.1..0...
-// ....0..0...
-// ..100000...
-// ....0..0...
-// ....0......`
-// const words = [
-//   'popcorn',
-//   'fruit',
-//   'flour',
-//   'chicken',
-//   'eggs',
-//   'vegetables',
-//   'pasta',
-//   'pork',
-//   'steak',
-//   'cheese',
-// ]
-// let result = crosswordSolver(puzzle, words);
-// console.log(result);
+const puzzle = `..1.1..1...
+10000..1000
+..0.0..0...
+..1000000..
+..0.0..0...
+1000..10000
+..0.1..0...
+....0..0...
+..100000...
+....0..0...
+....0......`
+const words = [
+  'popcorn',
+  'fruit',
+  'flour',
+  'chicken',
+  'eggs',
+  'vegetables',
+  'pasta',
+  'pork',
+  'steak',
+  'cheese',
+]
+
+crosswordSolver(puzzle, words);
