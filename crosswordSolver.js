@@ -8,13 +8,14 @@ let wordCount = 0
 let dimensionRow = 0
 let dimensionCol = 0
 
-const crossWordSolver = (inputStr,inputWords) => { // Basically the main
+const crosswordSolver = (inputStr,inputWords) => { // Basically the main
     // Assign inputs to global variables
     wordsIn = inputWords
     if (typeof inputStr === 'string') {
         inputArr = inputStr.split('\n')
     } else {
-        console.log("Error: invalid characer detected.")
+        // console.log("Error: invalid characer detected.")
+        console.log("Error")
         return
     }
     dimensionRow = inputArr.length
@@ -25,7 +26,8 @@ const crossWordSolver = (inputStr,inputWords) => { // Basically the main
     for (let row = 0; row < dimensionRow; row++) {
         board.push(".".repeat(dimensionCol).split(''))
         if (inputArr[row].length !== dimensionCol) {
-            console.log("Error: inconsistent column dimensions")
+            // console.log("Error: inconsistent column dimensions")
+            console.log("Error")
             return
         }
         inputArr[row] = inputArr[row].split('')
@@ -33,24 +35,26 @@ const crossWordSolver = (inputStr,inputWords) => { // Basically the main
             if (inputArr[row][col] > '0' && inputArr[row][col] <= '2') {
                 numCount += inputArr[row][col] - '0'
             } else if (inputArr[row][col] !== '.' && inputArr[row][col] !== '0') {
-                console.log("Error: invalid characer detected")
+                // console.log("Error: invalid characer detected")
+                console.log("Error")
                 return
             } 
         }
     }
     // Verify number sum with word count
     if (numCount !== wordCount) {
-        console.log("Error: word count do not match board parameters")
+        // console.log("Error: word count do not match board parameters")
+        console.log("Error")
         return
     }
     solveRecursive(0) // Solve using backtracking
     if (solution.length > 0) {
-        console.log("Solutions found:")
         for (let i=0; i < dimensionRow; i++) {
             console.log(solution[i].join(''))
         }
     } else {
-        console.log("Error: No unique solutions found")
+        //console.log("Error: No unique solutions found")
+        console.log("Error")
     }
 }
 
@@ -142,8 +146,3 @@ const removeHorizontal = (wordIDX,row,col) => {
         board[row][col+i] = '.'
     }
 }
-
-const puzzle = '2001\n0..0\n1000\n0..0'
-const words = ['aaab', 'aaac', 'aaad', 'aaae']
-
-crossWordSolver(puzzle,words)
