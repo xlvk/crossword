@@ -13,6 +13,13 @@ const crosswordSolver = (inputStr,inputWords) => { // Basically the main
         console.log("Error")
         return
     }
+    let regex = /^[a-zA-Z]+$/ // Verify words are only comprised of letters
+    for (let word of inputWords) {
+        if (!regex.test(word)) {
+            console.log("Error")
+            return
+        }
+    }
     // Assign inputs to global variables
     wordsIn = inputWords
     inputArr = inputStr.split('\n')
@@ -156,7 +163,7 @@ const puzzle = `..1.1..1...
 ....0..0...
 ....0......`
 const words = [
-  'popcorn',
+  '$opcorn',
   'fruit',
   'flour',
   'chicken',

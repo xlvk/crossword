@@ -11,6 +11,12 @@ export const crosswordSolverTest = (inputStr,inputWords) => { // Basically the m
     if (typeof inputStr !== 'string' || !Array.isArray(inputWords)) { // Verify input types
         return "Error\n"
     }
+    let regex = /^[a-zA-Z]+$/ // Verify words are only comprised of letters
+    for (let word of inputWords) {
+        if (!regex.test(word)) {
+            return "Error\n"
+        }
+    }
     // Assign inputs to global variables
     wordsIn = inputWords
     inputArr = inputStr.split('\n')
