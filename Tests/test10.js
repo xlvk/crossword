@@ -4,6 +4,8 @@ const words = 123
 const result = crosswordSolverTest(puzzle, words)
 const expected = `Error
 `
+console.log('')
+console.log(123)
 console.log("Expected results:\n"+expected)
 console.log("Actual results:\n"+result)
 if (result===expected) {

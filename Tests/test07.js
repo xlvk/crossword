@@ -4,6 +4,8 @@ const words = ['casa', 'casa', 'ciao', 'anta']
 const result = crosswordSolverTest(puzzle, words)
 const expected = `Error
 `
+console.log('2001\n0..0\n1000\n0..0')
+console.log('casa', 'casa', 'ciao', 'anta')
 console.log("Expected results:\n"+expected)
 console.log("Actual results:\n"+result)
 if (result===expected) {

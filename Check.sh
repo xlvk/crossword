@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /home/mariam/crowdsource/Tests
+cd Tests
 echo "Testing against inputs..."
 for file in ./*; do
     echo "Testing with input file: $file"
@@ -13,6 +13,8 @@ for file in ./*; do
     echo "Number of spaces in output: $spaces_count"
     echo "Time taken: $TIME_TAKEN"
     echo "----------------------------------"
+    echo "Press any key to continue..."
+    read -p 0
 done
 
 echo "All tests completed."

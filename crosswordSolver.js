@@ -151,28 +151,7 @@ const removeHorizontal = (wordIDX,row,col) => {
     }
 }
 
-const puzzle = `..1.1..1...
-10000..1000
-..0.0..0...
-..1000000..
-..0.0..0...
-1000..10000
-..0.1..0...
-....0..0...
-..100000...
-....0..0...
-....0......`
-const words = [
-  '$opcorn',
-  'fruit',
-  'flour',
-  'chicken',
-  'eggs',
-  'vegetables',
-  'pasta',
-  'pork',
-  'steak',
-  'cheese',
-]
+const puzzle = '2001\n0..0\n1000\n0..0'
+const words = ['casa', 'alan', 'ciao', 'anta']
 
-crosswordSolver(puzzle, words);
+crosswordSolver(puzzle, words)
