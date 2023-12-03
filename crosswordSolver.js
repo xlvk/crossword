@@ -8,7 +8,7 @@ let wordCount = 0
 let dimensionRow = 0
 let dimensionCol = 0
 
-const crosswordSolver = (inputStr, inputWords) => { // Basically the main
+function crosswordSolver(inputStr, inputWords) {
     if (typeof inputStr !== 'string' || !Array.isArray(inputWords)) { // Verify input types
         console.log("Error")
         return
@@ -64,7 +64,7 @@ const crosswordSolver = (inputStr, inputWords) => { // Basically the main
 }
 
 
-const solveRecursive = (wordIDX) => {
+function solveRecursive(wordIDX) {
     if (wordIDX === wordCount && !solutionFound) { // Success condition
         for (let i = 0; i < board.length; i++) {
             solution[i] = board[i].slice()
@@ -100,7 +100,7 @@ const solveRecursive = (wordIDX) => {
     }
 }
 
-const safeVertical = (wordIDX, row, col) => {
+function safeVertical(wordIDX, row, col) {
     if (row + wordsIn[wordIDX].length > dimensionRow) {
         return false
     }
@@ -112,7 +112,7 @@ const safeVertical = (wordIDX, row, col) => {
     return true
 }
 
-const safeHorizontal = (wordIDX, row, col) => {
+function safeHorizontal(wordIDX, row, col) {
     if (col + wordsIn[wordIDX].length > dimensionCol) {
         return false
     }
@@ -124,28 +124,28 @@ const safeHorizontal = (wordIDX, row, col) => {
     return true
 }
 
-const placeVertical = (wordIDX, row, col) => {
+function placeVertical(wordIDX, row, col) {
     for (let i = 0; i < wordsIn[wordIDX].length; i++) {
         board[row + i][col] = wordsIn[wordIDX][i]
     }
 }
 
 
-const placeHorizontal = (wordIDX, row, col) => {
+function placeHorizontal(wordIDX, row, col) {
     for (let i = 0; i < wordsIn[wordIDX].length; i++) {
         board[row][col + i] = wordsIn[wordIDX][i]
     }
 }
 
 
-const removeVertical = (wordIDX, row, col) => {
+function removeVertical(wordIDX, row, col) {
     for (let i = 0; i < wordsIn[wordIDX].length; i++) {
         board[row + i][col] = '.'
     }
 }
 
 
-const removeHorizontal = (wordIDX, row, col) => {
+function removeHorizontal(wordIDX, row, col) {
     for (let i = 0; i < wordsIn[wordIDX].length; i++) {
         board[row][col + i] = '.'
     }
