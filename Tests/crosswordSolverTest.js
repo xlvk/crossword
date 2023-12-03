@@ -7,10 +7,9 @@ let wordCount = 0
 let dimensionRow = 0
 let dimensionCol = 0
 
-export const crosswordSolver = (inputStr,inputWords) => { // Basically the main
+export const crosswordSolverTest = (inputStr,inputWords) => { // Basically the main
     if (typeof inputStr !== 'string' || !Array.isArray(inputWords)) { // Verify input types
-        console.log("Error")
-        return
+        return "Error\n"
     }
     // Assign inputs to global variables
     wordsIn = inputWords
@@ -24,8 +23,7 @@ export const crosswordSolver = (inputStr,inputWords) => { // Basically the main
         board.push(".".repeat(dimensionCol).split(''))
         if (inputArr[row].length !== dimensionCol) {
             // console.log("Error: inconsistent column dimensions")
-            console.log("Error")
-            return
+            return "Error\n"
         }
         inputArr[row] = inputArr[row].split('')
         for (let col = 0; col < dimensionCol; col++) {
@@ -33,31 +31,30 @@ export const crosswordSolver = (inputStr,inputWords) => { // Basically the main
                 numCount += inputArr[row][col] - '0'
             } else if (inputArr[row][col] !== '.' && inputArr[row][col] !== '0') {
                 // console.log("Error: invalid characer detected")
-                console.log("Error")
-                return
+                return "Error\n"
             } 
         }
     }
     // Verify number sum with word count
     if (numCount !== wordCount) {
         // console.log("Error: word count do not match board parameters")
-        console.log("Error")
-        return
+        return "Error\n"
     }
     solveRecursive(0) // Solve using backtracking
     if (solution.length > 0) {
+        let result = ""
         for (let i=0; i < dimensionRow; i++) {
-            console.log(solution[i].join(''))
+            result = result + solution[i].join('') + "\n"
         }
+        return result
     } else {
         //console.log("Error: No unique solutions found")
-        console.log("Error")
+        return "Error\n"
     }
 }
 
 
 const solveRecursive = (wordIDX) => {
-
     if (wordIDX === wordCount && !solutionFound) { // Success condition
         for (let i=0; i < board.length; i++) {
             solution[i] = board[i].slice()

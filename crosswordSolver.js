@@ -58,7 +58,6 @@ const crosswordSolver = (inputStr,inputWords) => { // Basically the main
 
 
 const solveRecursive = (wordIDX) => {
-
     if (wordIDX === wordCount && !solutionFound) { // Success condition
         for (let i=0; i < board.length; i++) {
             solution[i] = board[i].slice()
