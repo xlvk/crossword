@@ -1,5 +1,5 @@
 
-const board = [] 
+const board = []
 let solution = []
 let solutionFound = false
 let wordsIn = []
@@ -8,7 +8,7 @@ let wordCount = 0
 let dimensionRow = 0
 let dimensionCol = 0
 
-const crosswordSolver = (inputStr,inputWords) => { // Basically the main
+const crosswordSolver = (inputStr, inputWords) => { // Basically the main
     if (typeof inputStr !== 'string' || !Array.isArray(inputWords)) { // Verify input types
         console.log("Error")
         return
@@ -43,7 +43,7 @@ const crosswordSolver = (inputStr,inputWords) => { // Basically the main
                 // console.log("Error: invalid characer detected")
                 console.log("Error")
                 return
-            } 
+            }
         }
     }
     // Verify number sum with word count
@@ -54,7 +54,7 @@ const crosswordSolver = (inputStr,inputWords) => { // Basically the main
     }
     solveRecursive(0) // Solve using backtracking
     if (solution.length > 0) {
-        for (let i=0; i < dimensionRow; i++) {
+        for (let i = 0; i < dimensionRow; i++) {
             console.log(solution[i].join(''))
         }
     } else {
@@ -66,7 +66,7 @@ const crosswordSolver = (inputStr,inputWords) => { // Basically the main
 
 const solveRecursive = (wordIDX) => {
     if (wordIDX === wordCount && !solutionFound) { // Success condition
-        for (let i=0; i < board.length; i++) {
+        for (let i = 0; i < board.length; i++) {
             solution[i] = board[i].slice()
         }
         solutionFound = true
@@ -79,20 +79,20 @@ const solveRecursive = (wordIDX) => {
     for (let row = 0; row < dimensionRow; row++) {
         for (let col = 0; col <= dimensionCol; col++) {
             if (inputArr[row][col] > '0') {
-                if (safeVertical(wordIDX,row,col)) { // Try to place it vertically
+                if (safeVertical(wordIDX, row, col)) { // Try to place it vertically
                     inputArr[row][col] = inputArr[row][col] - 1
-                    placeVertical(wordIDX,row,col)
-                    solveRecursive(wordIDX+1)
+                    placeVertical(wordIDX, row, col)
+                    solveRecursive(wordIDX + 1)
                     // After recursion remove the piece and try another location
-                    removeVertical(wordIDX,row,col)
+                    removeVertical(wordIDX, row, col)
                     inputArr[row][col]++
                 }
-                if (safeHorizontal(wordIDX,row,col)) { // Try to place it horizontally
+                if (safeHorizontal(wordIDX, row, col)) { // Try to place it horizontally
                     inputArr[row][col]--
-                    placeHorizontal(wordIDX,row,col)
-                    solveRecursive(wordIDX+1)
+                    placeHorizontal(wordIDX, row, col)
+                    solveRecursive(wordIDX + 1)
                     // After recursion remove the piece and try another location
-                    removeHorizontal(wordIDX,row,col)
+                    removeHorizontal(wordIDX, row, col)
                     inputArr[row][col]++
                 }
             }
@@ -100,58 +100,53 @@ const solveRecursive = (wordIDX) => {
     }
 }
 
-const safeVertical = (wordIDX,row,col) => {
-    if (row+wordsIn[wordIDX].length > dimensionRow) {
+const safeVertical = (wordIDX, row, col) => {
+    if (row + wordsIn[wordIDX].length > dimensionRow) {
         return false
     }
-    for (let i=0; i < wordsIn[wordIDX].length; i++) {
-        if ((inputArr[row+i][col] === '.') || (board[row+i][col] !== '.' && board[row+i][col] !== wordsIn[wordIDX][i])) {
+    for (let i = 0; i < wordsIn[wordIDX].length; i++) {
+        if ((inputArr[row + i][col] === '.') || (board[row + i][col] !== '.' && board[row + i][col] !== wordsIn[wordIDX][i])) {
             return false
         }
     }
     return true
 }
 
-const safeHorizontal = (wordIDX,row,col) => {
-    if (col+wordsIn[wordIDX].length > dimensionCol) {
+const safeHorizontal = (wordIDX, row, col) => {
+    if (col + wordsIn[wordIDX].length > dimensionCol) {
         return false
     }
-    for (let i=0; i < wordsIn[wordIDX].length; i++) {
-        if ((inputArr[row][col+i] === '.') || (board[row][col+i] !== '.'  && board[row][col+i] !== wordsIn[wordIDX][i])) {
+    for (let i = 0; i < wordsIn[wordIDX].length; i++) {
+        if ((inputArr[row][col + i] === '.') || (board[row][col + i] !== '.' && board[row][col + i] !== wordsIn[wordIDX][i])) {
             return false
         }
     }
     return true
 }
 
-const placeVertical = (wordIDX,row,col) => {
-    for (let i=0; i < wordsIn[wordIDX].length; i++) {
-        board[row+i][col] = wordsIn[wordIDX][i]
+const placeVertical = (wordIDX, row, col) => {
+    for (let i = 0; i < wordsIn[wordIDX].length; i++) {
+        board[row + i][col] = wordsIn[wordIDX][i]
     }
 }
 
 
-const placeHorizontal = (wordIDX,row,col) => {
-    for (let i=0; i < wordsIn[wordIDX].length; i++) {
-        board[row][col+i] = wordsIn[wordIDX][i]
+const placeHorizontal = (wordIDX, row, col) => {
+    for (let i = 0; i < wordsIn[wordIDX].length; i++) {
+        board[row][col + i] = wordsIn[wordIDX][i]
     }
 }
 
 
-const removeVertical = (wordIDX,row,col) => {
-    for (let i=0; i < wordsIn[wordIDX].length; i++) {
-        board[row+i][col] = '.'
+const removeVertical = (wordIDX, row, col) => {
+    for (let i = 0; i < wordsIn[wordIDX].length; i++) {
+        board[row + i][col] = '.'
     }
 }
 
 
-const removeHorizontal = (wordIDX,row,col) => {
-    for (let i=0; i < wordsIn[wordIDX].length; i++) {
-        board[row][col+i] = '.'
+const removeHorizontal = (wordIDX, row, col) => {
+    for (let i = 0; i < wordsIn[wordIDX].length; i++) {
+        board[row][col + i] = '.'
     }
 }
-
-const puzzle = '2001\n0..0\n1000\n0..0'
-const words = ['casa', 'alan', 'ciao', 'anta']
-
-crosswordSolver(puzzle, words)
